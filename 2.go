@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const MULTIPLEXY_DELAY time.Duration = time.Second*3
+const MULTIPLEXY_DELAY time.Duration = time.Second * 3
 
 func main() {
 
@@ -39,12 +39,12 @@ func main() {
 func joinChannels(inputs ...<-chan int) <-chan int {
 	c := make(chan int)
 	for _, in := range inputs {
-		go func(nchan <-chan int) { 
+		go func(nchan <-chan int) {
 			for {
 				select {
-				case s:= <-nchan:
+				case s := <-nchan:
 					c <- s
-				default: 
+				default:
 					time.After(MULTIPLEXY_DELAY)
 				}
 			}
